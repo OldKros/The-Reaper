@@ -8,6 +8,7 @@ public class MobSpawner : MonoBehaviour
     [SerializeField] float spawnTime;
 
     [SerializeField] Vector2[] spawnPoints;
+    [SerializeField] int mobsToSpawn = 10;
 
     Coroutine spawnCoroutine;
 
@@ -26,14 +27,10 @@ public class MobSpawner : MonoBehaviour
 
     IEnumerator ContinouslySpawnPrefab()
     {
-        bool spawning = true;
-        int currentIndex = 0;
-        while (spawning)
+        for (int i = 0; i < mobsToSpawn; i++)
         {
-            if (currentIndex >= spawnPoints.Length) currentIndex = 0;
-
+            int currentIndex = Random.Range(0, spawnPoints.Length);
             Instantiate(prefabToSpawn, spawnPoints[currentIndex], Quaternion.identity);
-            currentIndex++;
             yield return new WaitForSeconds(spawnTime);
         }
     }

@@ -19,7 +19,7 @@ public class KnightController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Move();
     }
@@ -29,6 +29,16 @@ public class KnightController : MonoBehaviour
     {
         float deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
         float deltaY = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
+
+        print("X:" + deltaX + ", Y: " + deltaY);
+        if (deltaX != 0f || deltaY != 0f)
+        {
+            animator.SetBool("Moving", true);
+        }
+        else
+        {
+            animator.SetBool("Moving", false);
+        }
 
         bool movingLeft = deltaX < 0;
 
@@ -48,7 +58,7 @@ public class KnightController : MonoBehaviour
 
         Vector2 newPosition = new Vector2(newXPos, newYPos);
         float distance = Vector2.Distance(transform.position, newPosition);
-        animator.SetFloat("MoveSpeed", distance);
+        // animator.SetFloat("MoveSpeed", distance);
 
         transform.position = newPosition;
     }

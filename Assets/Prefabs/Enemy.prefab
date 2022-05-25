@@ -13,8 +13,10 @@ GameObject:
   - component: {fileID: 3772819876536852126}
   - component: {fileID: 3772819876536852121}
   - component: {fileID: 5272067239856251421}
+  - component: {fileID: 3435223757469009728}
+  - component: {fileID: 7835895394344065407}
   m_Layer: 0
-  m_Name: Big Demon
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,3 +149,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   moveSpeed: 2
+--- !u!114 &3435223757469009728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3772819876536852125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97725140e82886542becd12795978e63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Damage>k__BackingField: 30
+  <AttackSpeed>k__BackingField: 1.2
+--- !u!114 &7835895394344065407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3772819876536852125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61722bf51ed88f94b975b520095f4a22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaximumHealth: 300
+  <CurrentHealth>k__BackingField: 300
+  <HealthPercent>k__BackingField: 100

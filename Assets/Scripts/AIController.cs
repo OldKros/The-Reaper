@@ -31,7 +31,7 @@ public class AIController : MonoBehaviour
         float deltaX = newPosition.x - transform.position.x;
         transform.position = newPosition;
 
-        print(deltaX);
+        // print(deltaX);
         if (!Mathf.Approximately(deltaX, 0f))
         {
             spriteRenderer.flipX = deltaX < 0;
