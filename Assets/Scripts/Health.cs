@@ -5,14 +5,13 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private int MaximumHealth;
+    [field: SerializeField] public int MaximumHealth { get; private set; }
     [field: SerializeField] public int CurrentHealth { get; private set; }
 
     [field: SerializeField]
     [field: Range(0, 100)]
     public float HealthPercent { get; private set; } = 100;
 
-    public delegate float OnHealthChanged();
     public event Action healthChanged;
 
 

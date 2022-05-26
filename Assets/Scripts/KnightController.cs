@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,11 +7,15 @@ public class KnightController : MonoBehaviour
 {
 
     [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float attackSpeed = 2f;
+    [SerializeField] GameObject weaponSwinger;
 
-
+    float lastAttack = float.MaxValue;
+    bool canAttack = true;
 
     Animator animator;
     SpriteRenderer spriteRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,9 +26,26 @@ public class KnightController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Move();
+        lastAttack += Time.deltaTime;
+        canAttack = lastAttack >= attackSpeed;
+        HandleInput();
     }
 
+    private void HandleInput()
+    {
+        Move();
+        if (Input.GetMouseButtonDown(0) && canAttack)
+        {
+            Attack();
+        }
+    }
+
+    private void Attack()
+    {
+        animator.SetTrigger("Attack");
+        this.
+        lastAttack = 0f;
+    }
 
     void Move()
     {
@@ -41,11 +63,12 @@ public class KnightController : MonoBehaviour
         }
 
         bool movingLeft = deltaX < 0;
-
+        Vector3 characterScale = transform.localScale;
         if (!Mathf.Approximately(deltaX, 0f))
         {
-            spriteRenderer.flipX = movingLeft;
+            characterScale.x = movingLeft ? -1 : 1;
         }
+        transform.localScale = characterScale;
 
 
         // float newXPos = Mathf.Clamp(transform.position.x + deltaX, xMin, xMax);
