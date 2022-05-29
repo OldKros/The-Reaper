@@ -12,7 +12,10 @@ public class Health : MonoBehaviour
     [field: Range(0, 100)]
     public float HealthPercent { get; private set; } = 100;
 
-    public event Action healthChanged;
+
+    public event Action healthRemoved;
+
+    public event Action onDeath;
 
 
 
@@ -21,8 +24,9 @@ public class Health : MonoBehaviour
     void Start()
     {
         CurrentHealth = MaximumHealth;
-        healthChanged += UpdateHealthPercent;
-        healthChanged?.Invoke();
+        healthRemoved += UpdateHealthPercent;
+        // healthRemoved?.Invoke();
+        UpdateHealthPercent();
     }
 
     // Update is called once per frame
@@ -35,9 +39,17 @@ public class Health : MonoBehaviour
     public void TakeDamage(DamageDealer dd)
     {
         CurrentHealth -= dd.Damage;
-        healthChanged?.Invoke();
+        healthRemoved?.Invoke();
+        if (CurrentHealth <= 0)
+        {
+            Die();
+        }
     }
 
+    private void Die()
+    {
+        onDeath?.Invoke();
+    }
 
     private void UpdateHealthPercent()
     {

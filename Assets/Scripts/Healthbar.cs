@@ -18,7 +18,7 @@ public class Healthbar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        healthTracker.healthChanged += UpdateBar;
+        healthTracker.healthRemoved += UpdateBar;
         int heartCount = healthTracker.MaximumHealth / healthPerHeart;
         // destroy all current children
         for (int i = 0; i < transform.childCount; i++)

@@ -11,14 +11,16 @@ public class Pickup : MonoBehaviour
     }
 
     [field: SerializeField] public PickupType Type { get; private set; }
-    [SerializeField] int value = 1;
+    [field: SerializeField] public int Value { get; private set; } = 1;
+
+
 
     Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -31,11 +33,13 @@ public class Pickup : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         animator.SetBool("PickedUp", true);
+        StartCoroutine(DestroyAfterPickup());
     }
 
 
-    private void DestroyAfterPickup()
+    private IEnumerator DestroyAfterPickup()
     {
-        Destroy(transform.parent.gameObject);
+        yield return new WaitForSeconds(0.2f);
+        Destroy(gameObject);
     }
 }
