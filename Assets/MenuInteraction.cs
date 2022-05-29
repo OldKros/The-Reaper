@@ -23,6 +23,12 @@ public class MenuInteraction : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void ReloadLevel()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void Quit()
     {
         Application.Quit();

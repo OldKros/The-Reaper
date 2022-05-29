@@ -479,7 +479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  attackSpeed: 1
+  attackSpeed: 0.5
   weaponSwinger: {fileID: 0}
 --- !u!114 &5188646143278495853
 MonoBehaviour:
